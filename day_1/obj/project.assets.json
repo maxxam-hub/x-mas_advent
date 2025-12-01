@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\C#\\AoC2025\\day_1\\password\\password.csproj",
+      "projectUniqueName": "E:\\C#\\AoC2025\\day_1\\password.csproj",
       "projectName": "password",
-      "projectPath": "E:\\C#\\AoC2025\\day_1\\password\\password.csproj",
+      "projectPath": "E:\\C#\\AoC2025\\day_1\\password.csproj",
       "packagesPath": "C:\\Users\\maxxi\\.nuget\\packages\\",
-      "outputPath": "E:\\C#\\AoC2025\\day_1\\password\\obj\\",
+      "outputPath": "E:\\C#\\AoC2025\\day_1\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\maxxi\\AppData\\Roaming\\NuGet\\NuGet.Config"
