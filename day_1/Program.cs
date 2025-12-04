@@ -1,50 +1,39 @@
 ﻿using System;
-using System.Diagnostics.SymbolStore;
+using System.IO;
 
 class Program
 {
     static void Main()
     {
-        int k = 0, curK = 0, temp = 0, current = 50;
-        string rotation = "";
+        long totalHits = 0;
+        int pos = 50;
 
-        while (isEnd(ref rotation))
+        foreach (var line in File.ReadAllLines("input.txt"))
         {
-            temp = int.Parse(rotation.Substring(1));
+            char dir = line[0];
+            long steps = long.Parse(line.Substring(1));
 
-            if (rotation[0] == 'R')
+            int dirSign = dir == 'R' ? 1 : -1;
+
+            long k_first;
+            if (dir == 'R')
             {
-                curK = (temp + current) / 100;
-                current = (current + temp) % 100;
+                k_first = (100 - pos) % 100;
+                if (k_first == 0) k_first = 100;
             }
-            if (rotation[0] == 'L')
+            else
             {
-                if (current - temp > 0) curK = 0;
-                else if (current == temp) curK = 1;
-                else
-                {
-                    curK = ((current - temp) / -100) < 1 ? 1 : ((current - temp) / -100 + 1);
-                    if (current == 0 && temp < 100) curK = 0;
-                }
-                if (curK == 0)
-                {
-                    if (current == 0) current = temp - current;
-                    else current = current - temp;
-                }
-                else current = (current - temp + 100 * curK) % 100;
+                k_first = pos % 100;
+                if (k_first == 0) k_first = 100;
             }
 
-            k += curK;
+            if (steps >= k_first)
+                totalHits += 1 + (steps - k_first) / 100;
 
-            Console.WriteLine($"{k} {current}");
+            pos = (int)((pos + dirSign * steps) % 100);
+            if (pos < 0) pos += 100;
         }
-    }
 
-    static bool isEnd(ref string str)
-    {
-        str = Console.ReadLine();
-
-        if (str == "" || str == "\n" || str == " ") return false;
-        else return true;
+        Console.WriteLine(totalHits);
     }
 }
