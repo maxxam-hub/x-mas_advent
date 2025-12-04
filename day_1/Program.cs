@@ -19,8 +19,19 @@ class Program
             }
             if (rotation[0] == 'L')
             {
-                curK = current > temp ? 0 : (current - temp - 100) / -100;
-                current = curK == 0 ? (current - temp + 100) % 100 : (current - temp + 100 * curK) % 100;
+                if (current - temp > 0) curK = 0;
+                else if (current == temp) curK = 1;
+                else
+                {
+                    curK = ((current - temp) / -100) < 1 ? 1 : ((current - temp) / -100 + 1);
+                    if (current == 0 && temp < 100) curK = 0;
+                }
+                if (curK == 0)
+                {
+                    if (current == 0) current = temp - current;
+                    else current = current - temp;
+                }
+                else current = (current - temp + 100 * curK) % 100;
             }
 
             k += curK;
