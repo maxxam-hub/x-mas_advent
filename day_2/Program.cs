@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Text.RegularExpressions;
 
 class Program
 {
@@ -16,12 +17,12 @@ class Program
         var arrayOfRows = res.Split(",");
         foreach (var e in arrayOfRows)
         {
-            sumRes(e, ref sum);
+            sumResSecond(e, ref sum);
         }
         Console.WriteLine(sum);
     }
 
-    static void sumRes(string row, ref double sum)
+    static void sumResOne(string row, ref double sum)
     {
         var arr = row.Split("-");
         var start = double.Parse(arr[0]);
@@ -42,6 +43,32 @@ class Program
                     Console.WriteLine($"{str} - {sum}");
                 }
             }
+        }
+    }
+
+    static void sumResSecond(string row, ref double sum)
+    {
+        var arr = row.Split("-");
+        var start = double.Parse(arr[0]);
+        var end = double.Parse(arr[1]);
+        string str = "", tempStr = "";
+        int matches = 0;
+        bool flagContinue = true;
+        for (double i = start; i < end + 1; i++)
+        {
+            str = Convert.ToString(i);
+            for (int j = 0; j < str.Length; j++)
+            {
+                tempStr = str.Substring(0, j + 1);
+                matches = Regex.Matches(str, tempStr).Count;
+                if (matches >= 2 && flagContinue && (matches * tempStr.Length == str.Length))
+                {
+                    sum += Convert.ToInt64(str);
+                    Console.WriteLine($"srt: {str} tempStr {tempStr} sum: {sum}");
+                    flagContinue = false;
+                }
+            }
+            flagContinue = true;
         }
     }
 }
