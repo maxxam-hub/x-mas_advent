@@ -7,7 +7,7 @@ class Program
     static void Main()
     {
         string? inputLine;
-        int sum = 0;
+        double sum = 0;
         List<string> arrayOfRows = new List<string>();
 
         while (!string.IsNullOrEmpty(inputLine = Console.ReadLine()))
@@ -16,12 +16,12 @@ class Program
         }
         foreach (var e in arrayOfRows)
         {
-            sumJoltage(e, ref sum);
+            sumJoltageTwo(e, ref sum);
         }
         Console.WriteLine(sum);
     }
 
-    static void sumJoltage(string str, ref int sum)
+    static void sumJoltageOne(string str, ref int sum)
     {
         int maxOne = -1, maxTwo = -1;
         int convertCharOne = 0, convertCharTwo = 0, indexOfMax = 0;
@@ -42,7 +42,36 @@ class Program
                 maxTwo = convertCharTwo;
             }
         }
-        Console.WriteLine($"maxone: {Convert.ToString(maxOne)} maxtwo {Convert.ToString(maxTwo)}");
         sum += int.Parse(Convert.ToString(maxOne) + Convert.ToString(maxTwo));
+    }
+
+    static void sumJoltageTwo(string str, ref double sum)
+    {
+        int convertChar = 0, max = -1, indexOfMax = 0;
+        string resStr = "", tempStr = str;
+        while (resStr.Length != 12)
+        {
+            if (tempStr.Length > 12)
+            {
+                for (int i = 0; i < tempStr.Length - 12; i++)
+                {
+                    convertChar = int.Parse(tempStr[i].ToString());
+                    if (convertChar > max)
+                    {
+                        max = convertChar;
+                        indexOfMax = i;
+                    }
+                }
+                resStr += Convert.ToString(max);
+                max = -1;
+                tempStr = tempStr.Substring(indexOfMax);
+            }
+            else
+            {
+                resStr += tempStr;
+            }
+        }
+        Console.WriteLine($"{resStr}");
+        sum += Convert.ToInt64(resStr);
     }
 }
