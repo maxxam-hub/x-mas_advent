@@ -45,33 +45,35 @@ class Program
         sum += int.Parse(Convert.ToString(maxOne) + Convert.ToString(maxTwo));
     }
 
-    static void sumJoltageTwo(string str, ref double sum)
+    public static void sumJoltageTwo(string line, ref double sum)
     {
-        int convertChar = 0, max = -1, indexOfMax = 0;
-        string resStr = "", tempStr = str;
-        while (resStr.Length != 12)
+        const int digitsToTake = 12;
+        int n = line.Length;
+
+        char[] result = new char[digitsToTake];
+
+        int startIndex = 0;
+
+        for (int pos = 0; pos < digitsToTake; pos++)
         {
-            if (tempStr.Length > 12)
+            char maxDigit = '0';
+            int maxIndex = startIndex;
+
+            int endIndex = n - (digitsToTake - pos);
+
+            for (int i = startIndex; i <= endIndex; i++)
             {
-                for (int i = 0; i < tempStr.Length - 12; i++)
+                if (line[i] > maxDigit)
                 {
-                    convertChar = int.Parse(tempStr[i].ToString());
-                    if (convertChar > max)
-                    {
-                        max = convertChar;
-                        indexOfMax = i;
-                    }
+                    maxDigit = line[i];
+                    maxIndex = i;
                 }
-                resStr += Convert.ToString(max);
-                max = -1;
-                tempStr = tempStr.Substring(indexOfMax);
             }
-            else
-            {
-                resStr += tempStr;
-            }
+
+            result[pos] = maxDigit;
+            startIndex = maxIndex + 1;
         }
-        Console.WriteLine($"{resStr}");
-        sum += Convert.ToInt64(resStr);
+
+        sum += Convert.ToInt64(new string(result));
     }
 }
