@@ -7,7 +7,6 @@ class Program
     static void Main()
     {
         string? inputLine;
-        double sum = 0;
         int height = 0, width = 0, res = 0;
         List<string> arrayString = new List<string>();
 
@@ -41,12 +40,14 @@ class Program
         {
             for (int l = -1; l < 2; l++)
             {
-                if (k + i > 0 && k + i < height && l + j > 0 && l + j < width)
+                if (k + i > -1 && k + i < height && l + j > -1 && l + j < width)
                 {
                     if (arrayOfRows[i + k][j + l] == '@') c += 1;
+                    //Console.WriteLine($"i {i} j {j} i + k {i + k} j + l {j + l} c {c}");
                 }
             }
         }
+        //Console.WriteLine($"i {i} j {j} c {c - 1}");
         return c - 1;
     }
 }
