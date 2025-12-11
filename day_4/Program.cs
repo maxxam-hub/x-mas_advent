@@ -1,14 +1,16 @@
 ﻿using System;
 using System.IO;
 using System.Text.RegularExpressions;
+using System.Text;
 
 class Program
 {
     static void Main()
     {
         string? inputLine;
-        int height = 0, width = 0, res = 0;
+        int height = 0, width = 0, res = 0, resNew = 0;
         List<string> arrayString = new List<string>();
+        List<string> arrayStringNew = new List<string>();
 
         while (!string.IsNullOrEmpty(inputLine = Console.ReadLine()))
         {
@@ -16,20 +18,29 @@ class Program
             width = inputLine.Length;
         }
         height = arrayString.Count;
+        arrayStringNew = arrayString;
 
-        for (int i = 0; i < height; i++)
+        do
         {
-            for (int j = 0; j < width; j++)
+            resNew = res;
+            arrayString = arrayStringNew;
+            for (int i = 0; i < height; i++)
             {
-                if (arrayString[i][j] == '@')
+                StringBuilder sb = new StringBuilder(arrayStringNew[i]);
+                for (int j = 0; j < width; j++)
                 {
-                    if (CountAround(ref arrayString, i, j, height, width) < 4)
+                    if (arrayString[i][j] == '@')
                     {
-                        res += 1;
+                        if (CountAround(ref arrayString, i, j, height, width) < 4)
+                        {
+                            res += 1;
+                            sb[j] = '.';
+                        }
                     }
                 }
+                arrayStringNew[i] = sb.ToString();
             }
-        }
+        } while (res != resNew);
         Console.WriteLine(res);
     }
 
