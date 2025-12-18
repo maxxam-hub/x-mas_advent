@@ -9,36 +9,30 @@ class Program
         string? inputLine;
         double k = 0;
         HashSet<double> set = new HashSet<double>();
-        List<double> ingridients = new List<double>();
 
-        while ((inputLine = Console.ReadLine()) != ' ')
+        while (!string.IsNullOrEmpty(inputLine = Console.ReadLine()))
         {
             addToSet(inputLine, ref set);
         }
         while (!string.IsNullOrEmpty(inputLine = Console.ReadLine()))
         {
-            addToSet(inputLine, ref set);
+            countFresh(inputLine, ref set, ref k);
         }
         Console.WriteLine(k);
     }
 
     static void addToSet(string str, ref HashSet<double> set)
     {
-        double[] se = new double[str.Split("-")];
-        double start = se[0], end = se[1];
-        for (int i = start; i < end + 1; i++)
+        string[] se = str.Split("-");
+        double start = Convert.ToInt64(se[0]), end = Convert.ToInt64(se[1]);
+        for (double i = start; i < end + 1; i++)
         {
             set.Add(i);
         }
     }
 
-    static void countFresh(string str, ref HashSet<double> set)
+    static void countFresh(string str, ref HashSet<double> set, ref double k)
     {
-        double[] se = new double[str.Split("-")];
-        double start = se[0], end = se[1];
-        for (int i = start; i < end + 1; i++)
-        {
-            set.Add(i);
-        }
+        if (set.Contains(Convert.ToInt64(str))) k++;
     }
 }

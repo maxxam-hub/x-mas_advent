@@ -1,0 +1,15 @@
+E:\C#\AoC2025\day_5\obj\Debug\net9.0\day_5.GeneratedMSBuildEditorConfig.editorconfig
+E:\C#\AoC2025\day_5\obj\Debug\net9.0\day_5.AssemblyInfoInputs.cache
+E:\C#\AoC2025\day_5\obj\Debug\net9.0\day_5.AssemblyInfo.cs
+E:\C#\AoC2025\day_5\obj\Debug\net9.0\day_5.csproj.CoreCompileInputs.cache
+E:\C#\AoC2025\day_5\obj\Debug\net9.0\day_5.sourcelink.json
+E:\C#\AoC2025\day_5\bin\Debug\net9.0\day_5.exe
+E:\C#\AoC2025\day_5\bin\Debug\net9.0\day_5.deps.json
+E:\C#\AoC2025\day_5\bin\Debug\net9.0\day_5.runtimeconfig.json
+E:\C#\AoC2025\day_5\bin\Debug\net9.0\day_5.dll
+E:\C#\AoC2025\day_5\bin\Debug\net9.0\day_5.pdb
+E:\C#\AoC2025\day_5\obj\Debug\net9.0\day_5.dll
+E:\C#\AoC2025\day_5\obj\Debug\net9.0\refint\day_5.dll
+E:\C#\AoC2025\day_5\obj\Debug\net9.0\day_5.pdb
+E:\C#\AoC2025\day_5\obj\Debug\net9.0\day_5.genruntimeconfig.cache
+E:\C#\AoC2025\day_5\obj\Debug\net9.0\ref\day_5.dll
